@@ -15,43 +15,34 @@ import myapp.dbConfig.DbConnection;
  * @author HP
  */
 public class CrudUtil {
-    private static PreparedStatement getPreparedStatement(String sql, Object... args) throws SQLException, ClassNotFoundException{
+    
+    private static PreparedStatement getPreparedStatement(String sql, Object... args) throws SQLException, ClassNotFoundException {
         Connection connection = DbConnection.getInstance().getConnection();
-        
-        if (connection == null) {
-            System.out.println("Database connection is null.");
-            throw new SQLException("Failed to obtain database connection.");
-        } else if (connection.isClosed()) {
-            System.out.println("Database connection is closed.");
-            throw new SQLException("Database connection is closed.");
-        } else {
-            System.out.println("Database connection is active.");
+
+        if (connection == null || connection.isClosed()) {
+            throw new SQLException("Unable to establish a valid database connection.");
         }
-        
+
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        if(args != null){
+
+        if (args != null) {
             for (int i = 0; i < args.length; i++) {
-                preparedStatement.setObject(i+1, args[i]);
+                preparedStatement.setObject(i + 1, args[i]);
             }
         }
+
         return preparedStatement;
     }
     
+    //Executing SQL statements that change data, like INSERT, UPDATE, DELETE.
     public static boolean executeUpdate(String sql, Object... args) throws SQLException, ClassNotFoundException {
-        try (Connection connection = DbConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            if (args != null) {
-                for (int i = 0; i < args.length; i++) {
-                    preparedStatement.setObject(i + 1, args[i]);
-                }
-            }
-
+        try (PreparedStatement preparedStatement = getPreparedStatement(sql, args)) {
             return preparedStatement.executeUpdate() > 0;
         }
     }
     
-    public static ResultSet executeQuery(String sql, Object... args) throws SQLException, ClassNotFoundException{
+    //Executing SQL queries that return data, like SELECT
+     public static ResultSet executeQuery(String sql, Object... args) throws SQLException, ClassNotFoundException {
         return getPreparedStatement(sql, args).executeQuery();
     }
 }
