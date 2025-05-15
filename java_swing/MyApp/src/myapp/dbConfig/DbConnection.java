@@ -17,7 +17,7 @@ public class DbConnection {
     /**
     *   Singleton data pattern class has only one instance and provides a global point of access to that instance
     */
-    private static volatile DbConnection dbConnection; // volatile is important
+    private static volatile DbConnection dbConnection;
     private Connection connection;
 
     // Constants for database configuration
