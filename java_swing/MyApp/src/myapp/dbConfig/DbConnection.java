@@ -14,7 +14,10 @@ import java.util.logging.Logger;
  * @author HP
  */
 public class DbConnection {
-    private static DbConnection dbConnection;
+    /**
+    *   Singleton data pattern class has only one instance and provides a global point of access to that instance
+    */
+    private static volatile DbConnection dbConnection; // volatile is important
     private Connection connection;
 
     // Constants for database configuration
@@ -23,10 +26,24 @@ public class DbConnection {
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "";
 
+    // Private constructor
     private DbConnection() {
         connect();
     }
 
+    // Thread-safe lazy initialization
+    public static DbConnection getInstance() {
+        if (dbConnection == null) {
+            synchronized (DbConnection.class) {
+                if (dbConnection == null) {
+                    dbConnection = new DbConnection();
+                }
+            }
+        }
+        return dbConnection;
+    }
+
+    // Connect to the database
     private void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,13 +58,7 @@ public class DbConnection {
         }
     }
 
-    public static DbConnection getInstance() {
-        if (dbConnection == null) {
-            dbConnection = new DbConnection();
-        }
-        return dbConnection;
-    }
-
+    // Public method to get the connection
     public Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
