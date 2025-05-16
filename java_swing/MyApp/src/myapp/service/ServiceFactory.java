@@ -12,6 +12,9 @@ import myapp.service.custom.impl.UserRoleServiceImpl;
  */
 public class ServiceFactory {
     
+    //This variable holds the single instance of ServiceFactory
+    //private – so it can’t be accessed or modified directly from outside the class
+    //static – it belongs to the class itself
     private static ServiceFactory serviceFactory;
 
     private ServiceFactory() {
@@ -26,6 +29,7 @@ public class ServiceFactory {
         return serviceFactory;
     }
     
+    //produces or returns service instances based on the ServiceType enum 
     public ISuperService getService(ServiceType type){
         switch (type) {
             case UserRole:

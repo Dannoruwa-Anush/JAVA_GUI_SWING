@@ -33,12 +33,23 @@ public class UserRoleEntity {
     }
 
     public void setRole_id(int role_id) {
+        if (role_id < 0) {
+            throw new IllegalArgumentException("Role ID must be positive.");
+        }
         this.role_id = role_id;
     }
 
     public void setRole_name(String role_name) {
-        this.role_name = role_name;
-    }
+        if (role_name == null || role_name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Role name must not be null or empty.");
+        }
+
+        if (!role_name.matches("^[A-Za-z]+$")) {
+           throw new IllegalArgumentException("Role name must contain only letters (A-Z or a-z).");
+        }
+
+        this.role_name = role_name.trim();
+   }
 
     @Override
     public String toString() {
