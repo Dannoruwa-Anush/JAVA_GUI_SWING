@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myapp.dao.DaoFactory;
+import myapp.dao.ISuperDAO;
 import myapp.dao.custom.IUserRoleDao;
 import myapp.dto.userRole.UserRoleDTO;
 import myapp.dto.userRole.UserRoleSaveDTO;
@@ -24,9 +25,26 @@ public class UserRoleServiceImpl implements IUserRoleService{
     
     //Log : for update, delete
     private static final Logger LOGGER = Logger.getLogger(UserRoleServiceImpl.class.getName());
-
-    IUserRoleDao userRoleDao = (IUserRoleDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.USER_ROLE);
-
+    
+    //------- [Start : downcast] ------------------------------
+    
+    //reference of type ISuperService (parent class)
+    private IUserRoleDao userRoleDao;
+    
+    //constructor
+    public UserRoleServiceImpl(){
+        ISuperDAO iSuperDAO = DaoFactory.getDaoFactory().getDao(DaoFactory.DaoType.USER_ROLE);
+        
+        if(iSuperDAO instanceof IUserRoleDao iUserRoleDao){
+            userRoleDao = iUserRoleDao; //downcast (parent class -> child class)
+        }
+        else {
+            throw new IllegalStateException("Returned dao is not an instance of IUserRoleDao");
+        }
+    }
+    //------- [End : downcast] ------------------------------
+    
+    
     @Override
     public String addUserRole(UserRoleSaveDTO userRoleSaveDTO) throws Exception {
         UserRoleEntity userRole = UserRoleMapper.toEntity(userRoleSaveDTO);

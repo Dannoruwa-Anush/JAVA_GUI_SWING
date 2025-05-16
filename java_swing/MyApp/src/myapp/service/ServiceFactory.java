@@ -30,14 +30,17 @@ public class ServiceFactory {
         return serviceFactory;
     }
     
+    /*
+    *By returning the parent interface ISuperService, 
+    *the method doesn't need to know about the specific implementation details of each service.
+    */
     //produces or returns service instances based on the ServiceType enum 
     public ISuperService getService(ServiceType type){
-        switch (type) {
-            case UserRole:
-                return new UserRoleServiceImpl();
-            default:
-                return null;
-        }
+        return switch (type) {
+            case UserRole -> new UserRoleServiceImpl();
+                
+            default -> throw new IllegalArgumentException("Unsupported ServiceType: " + type);
+        };
     }
     
     public enum ServiceType{

@@ -30,16 +30,20 @@ public class DaoFactory {
         return daoFactory;
     }
     
-    public ISuperDAO getDao(DaoTypes types){
-        switch (types) {
-            case USER_ROLE:
-                return new UserRoleDaoImpl();
-            default:
-                return null;
-        }
+    /*
+    *By returning the parent interface ISuperDAO, 
+    *the method doesn't need to know about the specific implementation details of each dao.
+    */
+    //produces or returns dao instances based on the DaoType enum 
+    public ISuperDAO getDao(DaoType type){
+        return switch (type) {
+            case USER_ROLE -> new UserRoleDaoImpl();
+            
+            default -> throw new IllegalArgumentException("Unsupported DaoType: " + type);
+        };
     }
     
-    public enum DaoTypes{
+    public enum DaoType{
         USER_ROLE,
     }
 }
