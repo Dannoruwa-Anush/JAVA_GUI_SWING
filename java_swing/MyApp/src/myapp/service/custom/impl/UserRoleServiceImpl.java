@@ -13,6 +13,7 @@ import myapp.dao.custom.IUserRoleDao;
 import myapp.dto.userRole.UserRoleDTO;
 import myapp.dto.userRole.UserRoleSaveDTO;
 import myapp.entity.UserRoleEntity;
+import myapp.mapper.UserRoleMapper;
 import myapp.service.custom.IUserRoleService;
 
 /**
@@ -28,7 +29,8 @@ public class UserRoleServiceImpl implements IUserRoleService{
 
     @Override
     public String addUserRole(UserRoleSaveDTO userRoleSaveDTO) throws Exception {
-        boolean success = userRoleDao.save(new UserRoleEntity(0, userRoleSaveDTO.getRole_name()));
+        UserRoleEntity userRole = UserRoleMapper.toEntity(userRoleSaveDTO);
+        boolean success = userRoleDao.save(userRole);
         if (success) {
             return "Successfully Added";
         } else {
