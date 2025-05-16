@@ -12,12 +12,16 @@ public class UserRoleDTO {
     private int role_id;
     private String role_name;
 
+    //------- [Start : constructor, getter(), setter(), toString()]-------
+    //No arg constructor
     public UserRoleDTO() {
+        
     }
 
+    //constructor
     public UserRoleDTO(int role_id, String role_name) {
-        this.role_id = role_id;
-        this.role_name = role_name;
+        setRole_id(role_id); 
+        setRole_name(role_name);
     }
 
     public int getRole_id() {
@@ -32,7 +36,7 @@ public class UserRoleDTO {
         this.role_id = role_id;
     }
 
-    public void setRole_name(String role_name) {
+    public void setRole_name(String role_name) { 
         this.role_name = role_name;
     }
 
@@ -40,6 +44,5 @@ public class UserRoleDTO {
     public String toString() {
         return "UserRoleDTO{" + "role_id=" + role_id + ", role_name=" + role_name + '}';
     }
-    
-    
+    //------- [End : constructor, getter(), setter(), toString()]-------
 }

@@ -17,6 +17,7 @@ public class ServiceFactory {
     //static – it belongs to the class itself
     private static ServiceFactory serviceFactory;
 
+    //constructor - private
     private ServiceFactory() {
     
     }

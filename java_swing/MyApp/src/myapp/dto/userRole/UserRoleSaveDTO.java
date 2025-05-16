@@ -12,11 +12,15 @@ public class UserRoleSaveDTO {
     
     private String role_name;
 
+    //------- [Start : constructor, getter(), setter(), toString()]-------
+    //No arg constructor
     public UserRoleSaveDTO() {
+        
     }
-
+    
+    //constructor
     public UserRoleSaveDTO(String role_name) {
-        this.role_name = role_name;
+        setRole_name(role_name);
     }
 
     public String getRole_name() {
@@ -31,7 +35,5 @@ public class UserRoleSaveDTO {
     public String toString() {
         return "UserRoleSaveDTO{" + "role_name=" + role_name + '}';
     }
-    
-    
-    
+    //------- [End : constructor, getter(), setter(), toString()]-------
 }

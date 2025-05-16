@@ -13,6 +13,7 @@ public class UserRoleEntity {
     private int role_id;
     private String role_name;
     
+    //------- [Start : constructor, getter(), setter(), toString()]-------
     //No arg constructor
     public UserRoleEntity() {
 
@@ -55,4 +56,5 @@ public class UserRoleEntity {
     public String toString() {
         return "UserRoleEntity{" + "role_id=" + role_id + ", role_name=" + role_name + '}';
     }    
+    //------- [End : constructor, getter(), setter(), toString()]-------
 }

@@ -12,8 +12,12 @@ import myapp.dao.custom.impl.UserRoleDaoImpl;
  */
 public class DaoFactory {
     
+    //This variable holds the single instance of DaoFactory
+    //private – so it can’t be accessed or modified directly from outside the class
+    //static – it belongs to the class itself
     private static DaoFactory daoFactory;
 
+    //constrctor - private
     public DaoFactory() {
         
     }

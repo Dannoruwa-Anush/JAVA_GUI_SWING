@@ -44,7 +44,6 @@ public class UserRoleView extends javax.swing.JFrame {
         lblTitle1 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
         txt_roleName = new javax.swing.JTextField();
-        btnCustSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_userRoleList = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
@@ -61,13 +60,6 @@ public class UserRoleView extends javax.swing.JFrame {
 
         lblId1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblId1.setText("Name :");
-
-        btnCustSearch.setText("Search");
-        btnCustSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustSearchActionPerformed(evt);
-            }
-        });
 
         tbl_userRoleList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,10 +119,8 @@ public class UserRoleView extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblId1)
                                 .addGap(30, 30, 30)
-                                .addComponent(txt_roleName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnCustSearch)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(txt_roleName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 411, Short.MAX_VALUE))
                     .addComponent(jSeparator1))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -144,10 +134,9 @@ public class UserRoleView extends javax.swing.JFrame {
                 .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCustSearch)
                     .addComponent(txt_roleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
@@ -161,10 +150,6 @@ public class UserRoleView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCustSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustSearchActionPerformed
-        //searchUserRole();
-    }//GEN-LAST:event_btnCustSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         deleteUserRole();
@@ -219,7 +204,6 @@ public class UserRoleView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnCustSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
