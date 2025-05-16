@@ -28,7 +28,7 @@ public class DaoFactory {
     
     public ISuperDAO getDao(DaoTypes types){
         switch (types) {
-            case UserRole:
+            case USER_ROLE:
                 return new UserRoleDaoImpl();
             default:
                 return null;
@@ -36,6 +36,6 @@ public class DaoFactory {
     }
     
     public enum DaoTypes{
-        UserRole,
+        USER_ROLE,
     }
 }

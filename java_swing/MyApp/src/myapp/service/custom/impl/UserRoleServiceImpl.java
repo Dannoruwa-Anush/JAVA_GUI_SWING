@@ -19,7 +19,7 @@ import myapp.service.custom.IUserRoleService;
  */
 public class UserRoleServiceImpl implements IUserRoleService{
     
-    IUserRoleDao userRoleDao = (IUserRoleDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.UserRole);
+    IUserRoleDao userRoleDao = (IUserRoleDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.USER_ROLE);
     
     @Override
     public String addUserRole(UserRoleSaveDTO userRoleSaveDTO) throws Exception {
